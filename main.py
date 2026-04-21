@@ -96,18 +96,18 @@ def main():
     tokenizer = SimpleTokenizer(' '.join(texts)) # Create a tokenizer from the data
     print("Vocabulary size is", tokenizer.vocab_size)
 
-    train_CLS_dataset = SpeechesClassificationDataset(tokenizer, "train_CLS.tsv")
+    train_CLS_dataset = SpeechesClassificationDataset(tokenizer, "speechesdataset/train_CLS.tsv")
     train_CLS_loader = DataLoader(train_CLS_dataset, batch_size=batch_size,collate_fn=collate_batch,shuffle=True)
-    test_CLS_dataset = SpeechesClassificationDataset(tokenizer, "test_CLS.tsv")
+    test_CLS_dataset = SpeechesClassificationDataset(tokenizer, "speechesdataset/test_CLS.tsv")
     test_CLS_loader = DataLoader(test_CLS_dataset, batch_size=batch_size,collate_fn=collate_batch,shuffle=True)
   
-    with open("train_LM.txt", 'r', encoding='utf-8') as f:
+    with open("speechesdataset/train_LM.txt", 'r', encoding='utf-8') as f:
         lmtrainText = f.read()
-    with open("test_hbush.txt", 'r', encoding='utf-8') as f:
+    with open("speechesdataset/test_hbush.txt", 'r', encoding='utf-8') as f:
         hbushText = f.read()
-    with open("test_obama.txt", 'r', encoding='utf-8') as f:
+    with open("speechesdataset/test_obama.txt", 'r', encoding='utf-8') as f:
         obamaText = f.read()
-    with open("test_wbush.txt", 'r', encoding='utf-8') as f:
+    with open("speechesdataset/test_wbush.txt", 'r', encoding='utf-8') as f:
         wbushText = f.read()
 
     train_LM_dataset = LanguageModelingDataset(tokenizer, lmtrainText, block_size)
